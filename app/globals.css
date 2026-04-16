@@ -1,0 +1,160 @@
+/* ✅ @import FIRST */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:wght@300;400;500;600;700&display=swap");
+
+@import "tailwindcss";
+@tailwind utilities;
+
+:root {
+  --navy-deep: #0d1b2a;
+  --navy-mid: #1b263b;
+  --steel: #415a77;
+  --fog: #778da9;
+  --ice: #e0e1dd;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: #0d1b2a;
+  color: #e0e1dd;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+@keyframes pulseDot {
+  0%,
+  100% {
+    box-shadow: 0 0 4px #778da9;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 14px #778da9;
+    opacity: 0.5;
+  }
+}
+
+.anim-1 {
+  animation: fadeUp 0.75s ease both 0.15s;
+  opacity: 0;
+}
+.anim-2 {
+  animation: fadeUp 0.75s ease both 0.3s;
+  opacity: 0;
+}
+.anim-3 {
+  animation: fadeUp 0.75s ease both 0.45s;
+  opacity: 0;
+}
+.anim-4 {
+  animation: fadeUp 0.75s ease both 0.55s;
+  opacity: 0;
+}
+.anim-5 {
+  animation: fadeUp 0.75s ease both 0.65s;
+  opacity: 0;
+}
+.anim-6 {
+  animation: fadeUp 0.75s ease both 0.75s;
+  opacity: 0;
+}
+.anim-7 {
+  animation: fadeUp 0.75s ease both 0.9s;
+  opacity: 0;
+}
+.anim-8 {
+  animation: fadeUp 0.75s ease both 1.05s;
+  opacity: 0;
+}
+.anim-9 {
+  animation: fadeUp 0.75s ease both 1.2s;
+  opacity: 0;
+}
+.anim-10 {
+  animation: fadeIn 0.75s ease both 1.4s;
+  opacity: 0;
+}
+
+.hl-shimmer {
+  background: linear-gradient(135deg, #e0e1dd 0%, #778da9 45%, #415a77 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation:
+    fadeUp 0.75s ease both 0.55s,
+    shimmer 4s linear 2s infinite;
+  opacity: 0;
+}
+
+.pulse-dot {
+  animation: pulseDot 2.2s ease-in-out infinite;
+}
+
+.cta-btn {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #415a77;
+  transition:
+    border-color 0.3s ease,
+    transform 0.15s ease;
+}
+.cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #415a77 0%, #1b263b 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+.cta-btn:hover::before {
+  opacity: 1;
+}
+.cta-btn:hover {
+  border-color: #778da9;
+  transform: translateY(-2px);
+}
+.cta-btn > * {
+  position: relative;
+  z-index: 1;
+}
+.cta-arrow {
+  transition: transform 0.3s ease;
+}
+.cta-btn:hover .cta-arrow {
+  transform: translateX(5px);
+}
