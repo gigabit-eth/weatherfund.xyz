@@ -39,11 +39,9 @@ export default function Home() {
       const cy = H / 2;
       const R = Math.sqrt(cx * cx + cy * cy) * 1.08;
 
-      // 12-second rotation
       const SPEED = (2 * Math.PI) / (12 * 60);
       angle = (angle + SPEED) % (2 * Math.PI);
 
-      // Ambient particles (dim)
       particles.forEach((p) => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
@@ -55,7 +53,6 @@ export default function Home() {
         if (p.y < 0 || p.y > H) p.dy *= -1;
       });
 
-      // Rings
       [0.25, 0.5, 0.75, 1].forEach((f) => {
         ctx.beginPath();
         ctx.arc(cx, cy, R * f, 0, Math.PI * 2);
@@ -64,7 +61,6 @@ export default function Home() {
         ctx.stroke();
       });
 
-      // Cross-hairs
       ctx.strokeStyle = "rgba(65,90,119,0.12)";
       ctx.lineWidth = 0.8;
       ctx.beginPath();
@@ -76,7 +72,6 @@ export default function Home() {
       ctx.lineTo(cx, cy + R);
       ctx.stroke();
 
-      // Sweep trail
       const TRAIL = Math.PI * 0.55;
       const STEPS = 52;
       for (let i = 0; i < STEPS; i++) {
@@ -91,7 +86,6 @@ export default function Home() {
         ctx.fill();
       }
 
-      // Leading edge
       ctx.beginPath();
       ctx.moveTo(cx, cy);
       ctx.lineTo(
@@ -102,7 +96,6 @@ export default function Home() {
       ctx.lineWidth = 1.2;
       ctx.stroke();
 
-      // Spawn blips when sweep passes a particle
       const now = Date.now();
       particles.forEach((p) => {
         const pa = Math.atan2(p.y - cy, p.x - cx);
@@ -116,7 +109,6 @@ export default function Home() {
         }
       });
 
-      // Draw & age blips
       blips = blips.filter((b) => now - b.born < b.life);
       blips.forEach((b) => {
         const prog = (now - b.born) / b.life;
@@ -180,7 +172,7 @@ export default function Home() {
       />
 
       {/* ── Page content ── */}
-      <div className="relative z-10 flex flex-col items-center w-full min-h-svh px-6 py-12 justify-between">
+      <div className="relative z-10 flex flex-col items-center w-full min-h-svh px-6 py-16 justify-between">
         {/* Logo */}
         <div className="anim-1 flex items-center gap-3">
           <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
@@ -252,9 +244,10 @@ export default function Home() {
         </div>
 
         {/* Hero */}
-        <div className="flex flex-col items-center text-center flex-1 justify-center py-8 gap-0">
+        <div className="flex flex-col items-center text-center flex-1 justify-center py-16 gap-0">
+          {/* Eyebrow */}
           <p
-            className="anim-2 mb-6"
+            className="anim-2 mb-10"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: "11px",
@@ -266,11 +259,13 @@ export default function Home() {
             INTELLIGENCE · SIGNAL · PROFIT
           </p>
 
+          {/* Headline */}
           <h1
-            className="flex flex-col items-center leading-[0.9] mb-8"
+            className="flex flex-col items-center mb-12"
             style={{
               fontFamily: "'Bebas Neue', sans-serif",
               letterSpacing: "0.04em",
+              lineHeight: 1.0,
             }}
           >
             <span
@@ -285,7 +280,11 @@ export default function Home() {
             </span>
             <span
               className="hl-shimmer"
-              style={{ fontSize: "clamp(48px,15vw,108px)", display: "block" }}
+              style={{
+                fontSize: "clamp(48px,15vw,108px)",
+                display: "block",
+                marginTop: "2px",
+              }}
             >
               THE SKY.
             </span>
@@ -295,6 +294,7 @@ export default function Home() {
                 fontSize: "clamp(48px,15vw,108px)",
                 color: "#778da9",
                 display: "block",
+                marginTop: "16px",
               }}
             >
               TRADE THE
@@ -305,19 +305,21 @@ export default function Home() {
                 fontSize: "clamp(48px,15vw,108px)",
                 color: "#415a77",
                 display: "block",
+                marginTop: "2px",
               }}
             >
               FUTURE.
             </span>
           </h1>
 
+          {/* Body copy */}
           <p
-            className="anim-7 mb-9 max-w-lg"
+            className="anim-7 mb-14 max-w-lg"
             style={{
               fontFamily: "'Barlow', sans-serif",
               fontWeight: 300,
               fontSize: "clamp(14px,2vw,17px)",
-              lineHeight: 1.75,
+              lineHeight: 1.9,
               color: "#778da9",
             }}
           >
@@ -328,7 +330,7 @@ export default function Home() {
           </p>
 
           {/* Divider */}
-          <div className="anim-8 flex items-center gap-3 mb-12">
+          <div className="anim-8 flex items-center gap-3 mb-14">
             <span
               style={{
                 width: 56,
@@ -361,7 +363,7 @@ export default function Home() {
             href="https://t.me/weatherfund"
             target="_blank"
             rel="noopener noreferrer"
-            className="anim-9 cta-btn flex items-center gap-3 px-10 py-4"
+            className="anim-9 cta-btn flex items-center gap-3"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: "15px",
@@ -399,7 +401,7 @@ export default function Home() {
           </a>
 
           <p
-            className="anim-10 mt-3"
+            className="anim-10 mt-6"
             style={{
               fontFamily: "'Barlow Condensed', sans-serif",
               fontSize: "11px",
